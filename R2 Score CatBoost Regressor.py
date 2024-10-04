@@ -73,39 +73,12 @@ from sklearn.model_selection import GridSearchCV
 from sklearn.model_selection import train_test_split
 from sklearn.metrics import r2_score
 
-'''# Define the hyperparameter grid for CatBoost Regressor
-param_grid = {
-    'learning_rate': [0.01, 0.1, 1],
-    'depth': [3, 5, 7],
-    'l2_leaf_reg': [0.1, 1, 10],
-    'iterations': [100, 500, 1000]
-}'''
-
 # Define the CatBoost Regressor model
 model = CatBoostRegressor(task_type='GPU', loss_function='RMSE',
                          per_float_feature_quantization="0:border_count=128", bagging_temperature=1,
                             bootstrap_type="Bayesian", random_strength=0.5, grow_policy='Depthwise', border_count=128,
                            has_time=True, feature_border_type="Uniform", depth = 3, iterations = 1000, l2_leaf_reg = 0.1, learning_rate = 0.1)
                            
-#depth = 3, iterations = 1000, l2_leaf_reg = 0.1, learning_rate = 0.1
-
-'''# Perform grid search with cross-validation
-grid_search = GridSearchCV(model, param_grid, cv=5, scoring='r2')
-grid_search.fit(X_train, y_train)
-
-# Get the best hyperparameters and the corresponding R2 score
-best_params = grid_search.best_params_
-best_r2 = grid_search.best_score_
-
-print("Best hyperparameters:", best_params)
-print("Best R2 score:", best_r2)
-
-# Train the model with the best hyperparameters and evaluate its performance
-model_best = CatBoostRegressor(**best_params)
-model_best.fit(X_train, y_train)
-y_pred = model_best.predict(X_test)
-r2 = r2_score(y_test, y_pred)
-print("R2:", r2)'''
 
 # Train the model on the training data
 
