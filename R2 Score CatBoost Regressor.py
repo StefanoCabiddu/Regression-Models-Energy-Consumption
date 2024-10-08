@@ -47,6 +47,9 @@ sns.heatmap(df2.corr(), annot=True, cmap="coolwarm")
 plt.title("Dataset Correlation Matrix")
 plt.show()
 
+df2.hist(bins=20, figsize=(15,10))
+plt.show()
+
 X = df2.drop(columns = ["Grid(W)"], axis = 1)
 y = df2["Grid(W)"]
 
