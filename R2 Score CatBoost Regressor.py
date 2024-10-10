@@ -70,16 +70,8 @@ X_train = MinMax.fit_transform(X_train)
 X_test = MinMax.transform(X_test)
 
 from sklearn.metrics import r2_score, mean_absolute_error, mean_squared_error
-from sklearn.model_selection import train_test_split
 from sklearn.model_selection import GridSearchCV
-import math
-import numpy as np
-
-import pandas as pd
 from catboost import CatBoostRegressor
-from sklearn.model_selection import GridSearchCV
-from sklearn.model_selection import train_test_split
-from sklearn.metrics import r2_score
 
 # Define the hyperparameter grid for CatBoost Regressor
 param_grid = {
@@ -114,43 +106,31 @@ print("Mean Squared Error:", mse)
 print("Root Mean Squared Error:", rmse)
 
 # Create a scatter plot of actual vs predicted values
-
 plt.scatter(y_test, y_pred)
 
 # Plot a line of perfect prediction
-
 plt.plot([y_test.min(), y_test.max()], [y_test.min(), y_test.max()], 'r--')
 
 # Set title and labels
-
 plt.title('Actual vs Predicted Values (R2 = {:.4f})'.format(r2))
-
 plt.xlabel('Actual Values')
-
 plt.ylabel('Predicted Values')
 
 # Show the plot
-
 plt.show()
 
 residuals = y_test - y_pred
 
 # Create a scatter plot of residuals
-
 plt.scatter(y_pred, residuals)
 
 # Plot a horizontal line at y=0
-
 plt.axhline(y=0, color='r', linestyle='-')
 
 # Set title and labels
-
 plt.title('Residuals vs Predicted Values (R2 = {:.4f})'.format(r2))
-
 plt.xlabel('Predicted Values')
-
 plt.ylabel('Residuals')
 
 # Show the plot
-
 plt.show()
